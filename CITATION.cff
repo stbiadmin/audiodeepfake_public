@@ -1,0 +1,26 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the accompanying preprint."
+title: "Audio Deepfake Detection Using Temporal Coherence Analysis"
+authors:
+  - family-names: "Norman"
+    given-names: "Justin"
+    affiliation: "University of California, Berkeley"
+    email: "justin.norman@berkeley.edu"
+  - family-names: "Barrington"
+    given-names: "Sarah"
+    affiliation: "University of California, Berkeley"
+    email: "sbarrington@berkeley.edu"
+license: MIT
+repository-code: "https://github.com/stbiadmin/audiodeepfake_public"
+type: software
+version: "1.0.0"
+date-released: 2026-04-30
+preferred-citation:
+  type: article
+  title: "Audio Deepfake Detection Using Temporal Coherence Analysis"
+  authors:
+    - family-names: "Norman"
+      given-names: "Justin"
+    - family-names: "Barrington"
+      given-names: "Sarah"
+  year: 2026

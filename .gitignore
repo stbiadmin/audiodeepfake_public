@@ -1,0 +1,94 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+*.egg-info/
+*.egg
+MANIFEST
+
+# Virtual environments
+audio_deepfake/
+.venv/
+venv/
+env/
+ENV/
+
+# Distribution
+sdist/
+var/
+wheels/
+
+# Testing
+.pytest_cache/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+htmlcov/
+.tox/
+
+# Linting / type checking
+.ruff_cache/
+.mypy_cache/
+
+# Datasets (do NOT commit; download separately)
+data/asvspoof2019/
+data/asvspoof5/
+data/atadd/
+data/audeter/
+data/codecfake/
+data/deepspeak_v2/
+data/eval_datasets/
+data/eval_features/
+data/experiments/
+data/fakeavceleb/
+data/fakemusiccaps/
+data/features/
+data/fma/
+data/in_the_wild/
+data/librispeech/
+data/mlaad/
+data/musdb18/
+data/musdb18_stems/
+data/sample_training_data/
+data/sonics/
+data/spoofceleb/
+data/training_results/
+data/analysis/
+data/papers/
+
+# Track only the demo audio
+!data/sound-samples/
+
+# Logs and intermediate output
+logs/
+nohup/
+results/
+scratch/
+tmp/
+
+# Notebooks (keep code, drop output)
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Vendored third-party (use setup_baselines.sh to fetch)
+vendor/
