@@ -3,13 +3,14 @@
 Combines multiple importance methods: XGBoost built-in, SHAP, and permutation.
 """
 
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from typing import Dict, List, Optional, Tuple, Any
-from pathlib import Path
-import matplotlib.pyplot as plt
-from xgboost import XGBClassifier
 from sklearn.inspection import permutation_importance
+from xgboost import XGBClassifier
 
 
 def get_xgboost_importance(

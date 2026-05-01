@@ -24,12 +24,9 @@ Usage:
 import argparse
 import json
 import os
-import sys
 import tempfile
 import time
 from pathlib import Path
-
-import numpy as np
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 

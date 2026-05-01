@@ -7,12 +7,13 @@ Provides unified interfaces for:
 - Music XGBoost classifier
 """
 
+from abc import ABC, abstractmethod
+from typing import Dict, List, Optional, Tuple
+
 import numpy as np
 import pandas as pd
-from abc import ABC, abstractmethod
-from typing import Dict, List, Tuple, Optional, Any
 
-from .model_registry import get_registry, SPEECH_ENSEMBLE_CONFIG, FEATURE_SETS
+from .model_registry import FEATURE_SETS, SPEECH_ENSEMBLE_CONFIG, get_registry
 
 # Feature orders for different scaler versions
 # 27 features (excludes shapiro_p, normaltest_p - used by sv_ds_msclap)

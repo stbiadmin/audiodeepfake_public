@@ -25,18 +25,17 @@ import json
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Any
+from typing import Dict, Optional
 
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from evaluation import (
-    GeneralizationTester,
     EvaluationResult,
-    load_training_results,
+    GeneralizationTester,
     generate_evaluation_report,
+    load_training_results,
 )
-
 
 # Evaluation configurations
 # Maps trained models to the datasets they should be evaluated on
@@ -249,7 +248,7 @@ def run_evaluation(
     if features_path is None:
         print(f"  Features not found for: {dataset_name}")
         print(f"  Searched in: {features_dir}")
-        print(f"  Hint: Run feature extraction first with scripts/extract_features.py")
+        print("  Hint: Run feature extraction first with scripts/extract_features.py")
         return None
 
     # Get training F1 for comparison

@@ -12,14 +12,15 @@ Usage:
 """
 
 import json
-import sys
 import pickle
-import numpy as np
-import pandas as pd
-from pathlib import Path
+import sys
 from datetime import datetime
+from pathlib import Path
 
 import matplotlib
+import numpy as np
+import pandas as pd
+
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
@@ -139,7 +140,7 @@ def run_shap_analysis(expert, X_expert, y, output_dir, max_display=15):
     importance = dict(sorted(importance.items(), key=lambda x: x[1], reverse=True))
 
     # 1. Beeswarm plot
-    print(f"    Generating beeswarm plot...")
+    print("    Generating beeswarm plot...")
     plt.figure(figsize=(10, 8))
     shap.summary_plot(
         shap_values, X_expert,
@@ -153,7 +154,7 @@ def run_shap_analysis(expert, X_expert, y, output_dir, max_display=15):
     plt.close()
 
     # 2. Bar importance plot
-    print(f"    Generating bar importance plot...")
+    print("    Generating bar importance plot...")
     plt.figure(figsize=(10, 8))
     shap.summary_plot(
         shap_values, X_expert,
@@ -168,7 +169,7 @@ def run_shap_analysis(expert, X_expert, y, output_dir, max_display=15):
     plt.close()
 
     # 3. Force plots for example predictions
-    print(f"    Generating force plots...")
+    print("    Generating force plots...")
     y_pred_proba = expert['model'].predict_proba(X_expert)[:, 1]
     y_pred = (y_pred_proba >= 0.5).astype(int)
 
@@ -206,7 +207,7 @@ def run_shap_analysis(expert, X_expert, y, output_dir, max_display=15):
         plt.close()
 
     # 4. Dependence plots for top-3 features
-    print(f"    Generating dependence plots...")
+    print("    Generating dependence plots...")
     top_features = list(importance.keys())[:3]
     for feat in top_features:
         feat_idx = feature_names.index(feat)
@@ -348,11 +349,11 @@ def main():
     print(f"\n{'=' * 70}")
     print("SUMMARY")
     print(f"{'=' * 70}")
-    print(f"\nTop 10 features by average |SHAP| across all experts:")
+    print("\nTop 10 features by average |SHAP| across all experts:")
     for i, feat in enumerate(top_features):
         print(f"  {i+1:2d}. {feat:<30s} {avg_scores[feat]:.4f}")
 
-    print(f"\nPer-expert top 3:")
+    print("\nPer-expert top 3:")
     for result in all_results:
         top3 = list(result['feature_importance'].keys())[:3]
         print(f"  {result['name']}: {', '.join(top3)}")

@@ -20,18 +20,21 @@ Usage:
 
 import json
 import sys
+from pathlib import Path
+
+import librosa
 import numpy as np
 import pandas as pd
 import torch
-import torchaudio
-import librosa
-from pathlib import Path
-from datetime import datetime
 from scipy.interpolate import interp1d
 from scipy.optimize import brentq
 from sklearn.metrics import (
-    accuracy_score, precision_score, recall_score, f1_score,
-    roc_auc_score, roc_curve,
+    accuracy_score,
+    f1_score,
+    precision_score,
+    recall_score,
+    roc_auc_score,
+    roc_curve,
 )
 
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -89,7 +92,7 @@ def load_audio(file_path, target_sr=TARGET_SR, target_length=TARGET_LENGTH):
     """
     try:
         audio, sr = librosa.load(file_path, sr=target_sr, mono=True)
-    except Exception as e:
+    except Exception:
         return None
 
     # Pad or truncate (matching AASIST's data_utils.pad method)
@@ -156,7 +159,7 @@ def load_aasist_model(variant='AASIST'):
 def load_aasist3_model():
     """Load AASIST3 from HuggingFace (MTUCI/AASIST3)."""
     try:
-        from transformers import AutoModelForAudioClassification, AutoFeatureExtractor
+        from transformers import AutoFeatureExtractor, AutoModelForAudioClassification  # noqa: F401
     except ImportError:
         raise ImportError("transformers required: pip install transformers")
 
@@ -285,7 +288,7 @@ def main():
                 model = load_aasist3_model()
             else:
                 model = load_aasist_model(variant=model_name)
-            print(f"  Model loaded successfully.")
+            print("  Model loaded successfully.")
         except Exception as e:
             print(f"  SKIPPED ({type(e).__name__}): {e}")
             continue
@@ -295,7 +298,7 @@ def main():
             print(f"\n  Dataset: {dataset_name}")
             entries = load_eval_data(dataset_name)
             if not entries:
-                print(f"    No data found, skipping.")
+                print("    No data found, skipping.")
                 continue
 
             n_real = sum(1 for e in entries if e['label'] == 0)

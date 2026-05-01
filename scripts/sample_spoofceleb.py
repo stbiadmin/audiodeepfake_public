@@ -9,15 +9,14 @@ Strategy:
 4. Track metadata for reproducibility
 """
 
-import os
 import gzip
-import tarfile
 import json
 import random
 import subprocess
-from pathlib import Path
+import tarfile
 from collections import defaultdict
 from datetime import datetime
+from pathlib import Path
 
 # Configuration
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -136,11 +135,11 @@ def extract_sample_from_part(part_path: Path, metadata: dict) -> int:
                         if extracted_count % 1000 == 0:
                             print(f"    Extracted {extracted_count} files...")
 
-                    except Exception as e:
+                    except Exception:
                         pass  # Skip problematic files
 
     except EOFError:
-        print(f"  Reached end of archive part (expected for split archives)")
+        print("  Reached end of archive part (expected for split archives)")
     except Exception as e:
         print(f"  Error reading archive: {e}")
 
@@ -165,7 +164,7 @@ def process_part(suffix: str, metadata: dict) -> bool:
     # Download
     part_path = download_part(suffix)
     if part_path is None or not part_path.exists():
-        print(f"  Skipping - download failed")
+        print("  Skipping - download failed")
         return False
 
     # Extract sample
@@ -173,7 +172,7 @@ def process_part(suffix: str, metadata: dict) -> bool:
     print(f"  Extracted {count} files from this part")
 
     # Delete archive to save space
-    print(f"  Deleting archive to save space...")
+    print("  Deleting archive to save space...")
     part_path.unlink()
 
     # Update metadata

@@ -1,16 +1,24 @@
-"""Smoke tests covering the import surface and the feature-extraction pipeline.
+"""Smoke tests covering the core import surface and the feature-extraction pipeline.
 
-These tests do not require any downloaded datasets. They exercise the segment
--> similarity -> feature path on the demo clips shipped in
-data/sound-samples/.
+These tests do not require any downloaded datasets or audio embedding models.
+They exercise the segmentation -> similarity -> feature path on synthetic
+data and verify that the package layout is consistent with the paper.
+
+The full inference test (which requires torch + MS-CLAP) is gated behind the
+``slow`` mark and is skipped automatically when those dependencies are not
+installed.
 """
 
+from importlib.util import find_spec
 from pathlib import Path
 
 import numpy as np
 import pytest
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+
+HAS_TORCH = find_spec("torch") is not None
+HAS_MSCLAP = find_spec("msclap") is not None
 
 
 def test_import_core():
@@ -19,8 +27,12 @@ def test_import_core():
     from core.similarity_computer import SimilarityComputer  # noqa: F401
 
 
+@pytest.mark.skipif(
+    not (HAS_TORCH and HAS_MSCLAP),
+    reason="inference package requires torch and msclap",
+)
 def test_import_inference():
-    from inference import detect, AudioDeepfakeDetector  # noqa: F401
+    from inference import AudioDeepfakeDetector, detect  # noqa: F401
 
 
 def test_all_features_count():
@@ -52,6 +64,10 @@ def test_demo_audio_present():
 
 
 @pytest.mark.slow
+@pytest.mark.skipif(
+    not (HAS_TORCH and HAS_MSCLAP),
+    reason="end-to-end test requires torch and msclap",
+)
 def test_end_to_end_detect_on_sample():
     from inference import detect
 

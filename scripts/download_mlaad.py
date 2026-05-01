@@ -25,12 +25,9 @@ References:
 """
 
 import argparse
-import os
 import subprocess
 import sys
 from pathlib import Path
-from typing import Optional
-
 
 # Get path to venv's tools
 VENV_DIR = Path(__file__).parent.parent / 'audio_deepfake' / 'bin'
@@ -58,7 +55,7 @@ def download_mlaad_english(output_dir: Path, verbose: bool = True) -> bool:
     mlaad_dir.mkdir(parents=True, exist_ok=True)
 
     if verbose:
-        print(f"Downloading MLAAD English subset...")
+        print("Downloading MLAAD English subset...")
         print(f"Output directory: {mlaad_dir}")
         print()
 
@@ -79,7 +76,7 @@ def download_mlaad_english(output_dir: Path, verbose: bool = True) -> bool:
     result = subprocess.run(cmd)
 
     if result.returncode != 0:
-        print(f"ERROR: MLAAD download failed")
+        print("ERROR: MLAAD download failed")
         return False
 
     if verbose:
@@ -174,7 +171,7 @@ def check_status(output_dir: Path):
     """Check download status."""
     output_dir = Path(output_dir)
 
-    print(f"\nDataset Download Status")
+    print("\nDataset Download Status")
     print(f"{'='*50}")
     print(f"Output directory: {output_dir}")
 
@@ -183,14 +180,14 @@ def check_status(output_dir: Path):
     if mlaad_dir.exists():
         wav_count = len(list(mlaad_dir.rglob('*.wav')))
         models = [d.name for d in mlaad_dir.iterdir() if d.is_dir()]
-        print(f"\nMLAAD English (fake):")
+        print("\nMLAAD English (fake):")
         print(f"  Directory: {mlaad_dir}")
         print(f"  WAV files: {wav_count}")
         print(f"  TTS models: {len(models)}")
         if models:
             print(f"  Models: {', '.join(models[:5])}{'...' if len(models) > 5 else ''}")
     else:
-        print(f"\nMLAAD English: Not downloaded")
+        print("\nMLAAD English: Not downloaded")
 
     # Check M-AILABS
     mailabs_dir = output_dir / 'M-AILABS'

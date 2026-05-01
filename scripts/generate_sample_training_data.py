@@ -18,13 +18,14 @@ Usage:
 
 import argparse
 import json
-import shutil
-import numpy as np
-from pathlib import Path
-from typing import Dict, List, Tuple, Optional
-from itertools import combinations
 import random
+import shutil
 from datetime import datetime
+from itertools import combinations
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple
+
+import numpy as np
 from tqdm import tqdm
 
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -124,7 +125,7 @@ class EmbeddingExtractor:
             self.model.load_ckpt()
 
         elif self.model_id == "wavlm":
-            from transformers import WavLMModel, Wav2Vec2FeatureExtractor
+            from transformers import Wav2Vec2FeatureExtractor, WavLMModel
             self.model = WavLMModel.from_pretrained("microsoft/wavlm-large")
             self.processor = Wav2Vec2FeatureExtractor.from_pretrained("microsoft/wavlm-large")
             self.model.eval()
@@ -137,11 +138,12 @@ class EmbeddingExtractor:
         Returns:
             Tuple of (embeddings, similarities) or None if extraction fails
         """
-        import librosa
-        import torch
-        import tempfile
-        import soundfile as sf
         import os
+        import tempfile
+
+        import librosa
+        import soundfile as sf
+        import torch
 
         self.load_model()
 

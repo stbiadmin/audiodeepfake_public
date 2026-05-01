@@ -11,11 +11,11 @@ References:
     - Deepfake benchmark: https://arxiv.org/abs/2408.07414
 """
 
-import numpy as np
+from typing import Any, Dict, List, Optional, Union
+
 import librosa
+import numpy as np
 import torch
-from typing import List, Union, Optional, Dict, Any
-from pathlib import Path
 
 
 class AudioEmbeddingExtractor:
@@ -66,7 +66,7 @@ class AudioEmbeddingExtractor:
     def _load_model(self):
         """Load the WavLM model and processor."""
         try:
-            from transformers import WavLMModel, Wav2Vec2FeatureExtractor
+            from transformers import Wav2Vec2FeatureExtractor, WavLMModel
         except ImportError:
             raise ImportError(
                 "transformers library required. Install with: pip install transformers"

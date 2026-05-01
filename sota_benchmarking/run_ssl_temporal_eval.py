@@ -13,19 +13,23 @@ Usage:
 
 import json
 import sys
+from datetime import datetime
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
-from pathlib import Path
-from datetime import datetime
-from xgboost import XGBClassifier
-from sklearn.preprocessing import RobustScaler
-from sklearn.model_selection import train_test_split
 from scipy.interpolate import interp1d
 from scipy.optimize import brentq
 from sklearn.metrics import (
-    accuracy_score, precision_score, recall_score, f1_score,
-    roc_auc_score, roc_curve,
+    accuracy_score,
+    f1_score,
+    precision_score,
+    recall_score,
+    roc_auc_score,
+    roc_curve,
 )
+from sklearn.preprocessing import RobustScaler
+from xgboost import XGBClassifier
 
 PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))

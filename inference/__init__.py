@@ -37,15 +37,15 @@ Advanced Usage:
 __version__ = '1.0.0'
 __all__ = ['detect', 'detect_batch', 'AudioDeepfakeDetector']
 
-from typing import Dict, Any, List, Optional, Union
 from pathlib import Path
+from typing import Any, Dict, List, Optional, Union
 
-from .detector import AudioDeepfakeDetector
 from .audio_processor import (
     AudioLoadError,
-    UnsupportedFormatError,
     AudioTooShortError,
+    UnsupportedFormatError,
 )
+from .detector import AudioDeepfakeDetector
 
 # Module-level singleton for simple API
 _default_detector: Optional[AudioDeepfakeDetector] = None

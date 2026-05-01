@@ -10,11 +10,11 @@ References:
     - Paper: https://arxiv.org/abs/2111.09296
 """
 
-import numpy as np
+from typing import Any, Dict, List, Optional, Union
+
 import librosa
+import numpy as np
 import torch
-from typing import List, Union, Optional, Dict, Any
-from pathlib import Path
 
 
 class AudioEmbeddingExtractor:
@@ -65,7 +65,7 @@ class AudioEmbeddingExtractor:
     def _load_model(self):
         """Load the Wav2Vec2 model and processor."""
         try:
-            from transformers import Wav2Vec2Model, Wav2Vec2FeatureExtractor
+            from transformers import Wav2Vec2FeatureExtractor, Wav2Vec2Model
         except ImportError:
             raise ImportError(
                 "transformers library required. Install with: pip install transformers"

@@ -8,15 +8,11 @@ Dataset info: https://www.asvspoof.org/index2019.html
 Download: https://datashare.ed.ac.uk/handle/10283/3336
 """
 
-import os
-import sys
 import json
-import subprocess
+import sys
+import urllib.request
 import zipfile
 from pathlib import Path
-from typing import Optional
-import urllib.request
-import shutil
 
 
 def download_with_progress(url: str, output_path: str, description: str = "Downloading"):
@@ -203,9 +199,9 @@ def setup_asvspoof_2019(
         }, f, indent=2)
 
     print(f"\nMetadata saved to: {metadata_path}")
-    print(f"\nTo use this dataset for feature extraction:")
-    print(f"  Real audio: Look for files with 'bonafide' label in metadata")
-    print(f"  Fake audio: Look for files with 'spoof' label in metadata")
+    print("\nTo use this dataset for feature extraction:")
+    print("  Real audio: Look for files with 'bonafide' label in metadata")
+    print("  Fake audio: Look for files with 'spoof' label in metadata")
 
 
 def main():

@@ -18,13 +18,10 @@ Usage:
 """
 
 import argparse
-import os
-import sys
 import json
-import shutil
+import sys
 from pathlib import Path
-from typing import Dict, Any, Optional, List
-import subprocess
+from typing import Optional
 
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).parent.parent))

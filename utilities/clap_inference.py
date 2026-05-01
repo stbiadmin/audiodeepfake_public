@@ -3,11 +3,12 @@ Audio Embedding Utilities
 A module for extracting embeddings from audio files and text using LAION CLAP.
 """
 
-import numpy as np
-import librosa
-import torch
+from typing import Any, Dict, List, Optional, Union
+
 import laion_clap
-from typing import List, Union, Tuple, Dict, Any, Optional
+import librosa
+import numpy as np
+import torch
 
 
 class AudioEmbeddingExtractor:

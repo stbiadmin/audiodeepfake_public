@@ -2,10 +2,11 @@
 """Regenerate the single_voice top features figure using MS-CLAP data."""
 
 import json
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).parent.parent
 

@@ -1,7 +1,7 @@
 """Configuration module for audio deepfake detection."""
 
-from .base import AudioConfig, EmbeddingConfig, FeatureConfig, ExperimentConfig
 from .audio_types import AUDIO_TYPE_CONFIGS, get_audio_type_config
+from .base import AudioConfig, EmbeddingConfig, ExperimentConfig, FeatureConfig
 
 __all__ = [
     'AudioConfig',

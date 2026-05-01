@@ -1,10 +1,11 @@
 """Audio segmentation module for fixed-length windowing."""
 
-import numpy as np
-import librosa
-from pathlib import Path
-from typing import List, Tuple, Optional, Union
 from dataclasses import dataclass
+from pathlib import Path
+from typing import List, Optional, Tuple, Union
+
+import librosa
+import numpy as np
 
 from config.base import AudioConfig
 

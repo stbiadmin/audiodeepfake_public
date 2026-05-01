@@ -8,14 +8,14 @@ Compares feature distributions between:
 Generates visualizations to verify augmentation quality.
 """
 
+import argparse
 import json
+from pathlib import Path
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-from pathlib import Path
 from scipy import stats
-import argparse
-
 
 AUDIO_TYPES = ['music_instrumental', 'music_with_vocals']
 EMBEDDING_MODELS = ['laion_clap', 'msclap']
@@ -199,7 +199,7 @@ def analyze_audio_type(audio_type, embedding_model, data_dir, output_dir):
     fake_path = data_dir / embedding_model / f'{audio_type}_fake.json'
 
     if not all(p.exists() for p in [original_path, augmented_path, fake_path]):
-        print(f"  Skipping: missing files")
+        print("  Skipping: missing files")
         return None
 
     original_data = load_json(original_path)
@@ -221,7 +221,7 @@ def analyze_audio_type(audio_type, embedding_model, data_dir, output_dir):
         audio_type, embedding_model, output_dir
     )
 
-    print(f"\n  Feature comparison (Original vs Augmented):")
+    print("\n  Feature comparison (Original vs Augmented):")
     for _, row in comparison_df.iterrows():
         sig = '***' if row['t_pvalue'] < 0.001 else '**' if row['t_pvalue'] < 0.01 else '*' if row['t_pvalue'] < 0.05 else 'ns'
         print(f"    {row['feature']:<25} diff={row['mean_diff_pct']:+.1f}% {sig}")

@@ -80,7 +80,22 @@ target-version = "py310"
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I"]
-ignore = ["E501"]
+# Research codebases routinely violate a handful of stylistic rules that are
+# not load-bearing. We keep correctness checks (F401, F811, etc.) and ignore
+# pure stylistic ones plus a few patterns that are common in plotting and
+# sys.path manipulation code.
+ignore = [
+    "E501",  # line too long
+    "E402",  # module-level import not at top of file (sys.path patterns)
+    "E722",  # do not use bare except
+    "E741",  # ambiguous variable name
+    "F841",  # unused local (common in matplotlib code where `bars = ax.bar(...)`)
+    "W293",  # whitespace on blank line
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]      # re-exports
+"tests/*.py" = ["F401"]        # imports may exist purely to test importability
 
 [tool.pytest.ini_options]
 markers = [

@@ -22,8 +22,6 @@ Alternative: Use the musdb Python package which can download automatically:
     mus = musdb.DB(download=True)
 """
 
-import os
-import sys
 from pathlib import Path
 
 try:
@@ -58,13 +56,13 @@ def setup_musdb18_via_package(
         # Initialize with download=True to auto-download
         mus = musdb.DB(root=str(output_dir), download=True)
 
-        print(f"\nMUSDB18 dataset:")
+        print("\nMUSDB18 dataset:")
         print(f"  Location: {output_dir}")
         print(f"  Training tracks: {len(mus.load_mus_tracks(subsets='train'))}")
         print(f"  Test tracks: {len(mus.load_mus_tracks(subsets='test'))}")
 
         # List available stems
-        print(f"  Available stems: mixture, drums, bass, vocals, other")
+        print("  Available stems: mixture, drums, bass, vocals, other")
 
         return output_dir
 
@@ -101,7 +99,6 @@ def extract_stems(
         return
 
     import soundfile as sf
-    import numpy as np
 
     stems = stems or ['vocals', 'drums', 'bass', 'other', 'mixture']
 

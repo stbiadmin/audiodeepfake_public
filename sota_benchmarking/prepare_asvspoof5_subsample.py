@@ -182,11 +182,11 @@ def main():
     print(f"    Saved ({fake_out.stat().st_size / 1024 / 1024:.1f} MB)")
 
     # Summary
-    print(f"\n--- Summary ---")
+    print("\n--- Summary ---")
     print(f"Real: {SAMPLE_SIZE} entries WITH embeddings -> {real_out}")
     print(f"Fake: {SAMPLE_SIZE} entries WITHOUT embeddings -> {fake_out}")
-    print(f"\nNext step: extract embeddings for fake entries:")
-    print(f"  python sota_benchmarking/generate_embeddings.py \\")
+    print("\nNext step: extract embeddings for fake entries:")
+    print("  python sota_benchmarking/generate_embeddings.py \\")
     print(f"      --input {fake_out}")
 
 

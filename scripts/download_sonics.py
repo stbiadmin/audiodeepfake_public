@@ -21,14 +21,14 @@ Usage:
     python scripts/download_sonics.py --full
 """
 
+import json
 import os
+import subprocess
 import sys
 from pathlib import Path
-import subprocess
-import json
 
 try:
-    from huggingface_hub import snapshot_download, hf_hub_download
+    from huggingface_hub import hf_hub_download, snapshot_download
     HAS_HF = True
 except ImportError:
     HAS_HF = False
@@ -210,7 +210,7 @@ def download_sonics_fake_songs(
 
     # Count files
     mp3_files = list(output_dir.rglob("*.mp3"))
-    print(f"\nSONICS dataset (synthetic songs):")
+    print("\nSONICS dataset (synthetic songs):")
     print(f"  Location: {output_dir}")
     print(f"  MP3 files: {len(mp3_files)}")
 

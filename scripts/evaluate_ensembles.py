@@ -17,7 +17,7 @@ import json
 import sys
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Any, Dict
 
 import numpy as np
 import pandas as pd
@@ -26,13 +26,11 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from models.ensemble import (
-    EnsembleClassifier,
     ENSEMBLE_CONFIGS,
+    EnsembleClassifier,
     create_ensemble,
-    list_ensembles,
 )
 from training.data_loader import ALL_FEATURES
-
 
 # Evaluation datasets for speech models
 EVAL_DATASETS = [

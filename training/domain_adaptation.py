@@ -10,12 +10,12 @@ Reference:
 - MMD: Gretton et al., "A Kernel Two-Sample Test" (2012)
 """
 
+from typing import Optional
+
 import numpy as np
 from scipy import linalg
-from typing import Tuple, Optional, Dict, List
 from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.preprocessing import StandardScaler
-import warnings
 
 
 class CORALTransformer(BaseEstimator, TransformerMixin):

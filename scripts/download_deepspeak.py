@@ -6,13 +6,12 @@ This script:
 3. Organizes audio by real/fake labels and identity
 """
 
-import os
-import sys
 import json
+import os
 import subprocess
+import sys
 from pathlib import Path
 from typing import Optional
-import tempfile
 
 
 def get_ffmpeg_path() -> str:
@@ -157,7 +156,7 @@ def setup_deepspeak_v2(
 
             metadata[data_type].append(meta_entry)
         else:
-            print(f"    Failed to extract audio")
+            print("    Failed to extract audio")
             errors += 1
 
     # Save metadata in the split directory
@@ -165,7 +164,7 @@ def setup_deepspeak_v2(
     with open(metadata_path, 'w') as f:
         json.dump(metadata, f, indent=2)
 
-    print(f"\nDone!")
+    print("\nDone!")
     print(f"  Processed: {processed}")
     print(f"  Errors: {errors}")
     print(f"  Real samples: {len(metadata['real'])}")

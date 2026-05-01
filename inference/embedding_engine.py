@@ -3,9 +3,10 @@
 Extracts 1024-dimensional embeddings from audio segments using Microsoft CLAP.
 """
 
+from typing import List, Optional
+
 import numpy as np
 import torch
-from typing import List, Optional
 
 from .model_registry import get_registry
 

@@ -16,12 +16,12 @@ Usage:
     embeddings = extractor.extract_from_audio_data(audio_data, sr=16000)
 """
 
-import numpy as np
-import librosa
-import torch
-import sys
-from typing import List, Union, Optional, Dict, Any
 from pathlib import Path
+from typing import Any, Dict, List, Optional, Union
+
+import librosa
+import numpy as np
+import torch
 
 PROJECT_ROOT = Path(__file__).parent.parent
 

@@ -9,7 +9,7 @@ For both LAION-CLAP and MS-CLAP embeddings.
 
 import json
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import Any, Dict, List
 
 # Base paths
 FEATURES_DIR = Path("data/features")

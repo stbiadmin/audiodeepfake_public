@@ -9,12 +9,10 @@ Available subsets:
 - train-clean-100: ~6.3 GB (100 hours clean training)
 """
 
-import os
 import sys
 import tarfile
-from pathlib import Path
 import urllib.request
-
+from pathlib import Path
 
 LIBRISPEECH_URLS = {
     'dev-clean': 'https://www.openslr.org/resources/12/dev-clean.tar.gz',

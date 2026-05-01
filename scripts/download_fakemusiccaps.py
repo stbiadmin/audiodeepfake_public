@@ -15,12 +15,10 @@ Paper: https://arxiv.org/abs/2409.10684
 GitHub: https://github.com/polimi-ispl/FakeMusicCaps
 """
 
-import os
 import sys
+import urllib.request
 import zipfile
 from pathlib import Path
-import urllib.request
-
 
 ZENODO_URL = "https://zenodo.org/records/13732524/files/FakeMusicCaps.zip?download=1"
 EXPECTED_SIZE_GB = 4.5  # Approximate
@@ -78,7 +76,7 @@ def setup_fakemusiccaps(
 
     # Count and organize files
     wav_files = list(output_dir.rglob("*.wav"))
-    print(f"\nFakeMusicCaps dataset:")
+    print("\nFakeMusicCaps dataset:")
     print(f"  Location: {output_dir}")
     print(f"  Audio files: {len(wav_files)}")
 

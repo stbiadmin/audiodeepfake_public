@@ -1,7 +1,8 @@
 """Similarity computation module for pairwise embedding comparisons."""
 
-import numpy as np
 from typing import Optional, Tuple
+
+import numpy as np
 from scipy.spatial.distance import cdist, pdist, squareform
 
 

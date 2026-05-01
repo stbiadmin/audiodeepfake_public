@@ -10,10 +10,10 @@ Usage:
 """
 
 import argparse
-import subprocess
-from pathlib import Path
-from collections import defaultdict
 import random
+import subprocess
+from collections import defaultdict
+from pathlib import Path
 
 import pandas as pd
 from tqdm import tqdm
@@ -171,7 +171,7 @@ def main():
                                 year_targets[other_year] += shortfall // len(active_years)
                             print(f'\nYear {year} exhausted, redistributing {shortfall} to other years')
 
-    print(f'\n=== Final Results ===')
+    print('\n=== Final Results ===')
     print(f'Downloaded: {downloaded}')
     print(f'Failed: {failed}')
     print(f'Success rate: {downloaded/(downloaded+failed)*100:.1f}%')
@@ -183,7 +183,7 @@ def main():
     print(f'\nMetadata saved to {args.output_dir.parent / "real_downloaded_metadata.csv"}')
 
     # Show year distribution of downloads
-    print(f'\nYear distribution of downloads:')
+    print('\nYear distribution of downloads:')
     print(downloaded_df['year'].value_counts().head(10))
 
 

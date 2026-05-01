@@ -3,14 +3,14 @@
 Uses soundfile + scipy.resample_poly for ~21x faster loading than librosa.
 """
 
+from dataclasses import dataclass
+from math import gcd
+from pathlib import Path
+from typing import List, Optional, Tuple, Union
+
 import numpy as np
 import soundfile as sf
 from scipy.signal import resample_poly
-from pathlib import Path
-from typing import List, Tuple, Optional, Union
-from math import gcd
-from dataclasses import dataclass
-
 
 # Domain-specific segment settings (matches training config/base.py)
 SEGMENT_CONFIGS = {

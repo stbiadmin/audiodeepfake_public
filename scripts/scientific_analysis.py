@@ -10,16 +10,18 @@ Key visualizations:
 4. Feature importance analysis
 """
 
-import json
 import argparse
+import json
+import warnings
+from pathlib import Path
+
+import matplotlib.gridspec as gridspec
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import matplotlib.gridspec as gridspec
-from pathlib import Path
 from scipy import stats
-from sklearn.metrics import roc_auc_score, roc_curve
-import warnings
+from sklearn.metrics import roc_auc_score
+
 warnings.filterwarnings('ignore')
 
 #
@@ -549,7 +551,7 @@ def analyze_audio_type(audio_type, real_path, fake_path, output_dir, embedding_m
                                output_dir / f'feature_{feature}.png')
 
     # Print summary
-    print(f"\n  Top 5 discriminative features:")
+    print("\n  Top 5 discriminative features:")
     for _, row in importance_df.head(5).iterrows():
         sig = '***' if row['t_pvalue'] < 0.001 else '**' if row['t_pvalue'] < 0.01 else '*'
         print(f"    {row['feature']:<25} AUC={row['auc']:.3f}  d={row['cohens_d']:+.2f} {sig}")

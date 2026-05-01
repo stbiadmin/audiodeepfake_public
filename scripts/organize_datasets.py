@@ -24,13 +24,11 @@ The pipeline's process_dataset() expects:
     process_dataset(real_dir, fake_dir, audio_type)
 """
 
-import os
-import sys
 import json
+import random
 import shutil
 from pathlib import Path
-from typing import Optional, List
-import random
+from typing import List, Optional
 
 
 def create_symlinks_or_copy(
@@ -145,7 +143,7 @@ def organize_music_instrumental(
             count = create_symlinks_or_copy(wav_files, real_dir, use_symlinks)
             print(f"  Real (MUSDB18 other stem): {count} files")
         else:
-            print(f"  Real: MUSDB18 stems not found")
+            print("  Real: MUSDB18 stems not found")
 
     # Fake: FakeMusicCaps - filter for instrumental if possible
     fakemusiccaps_dir = data_dir / "fakemusiccaps"
@@ -181,7 +179,7 @@ def organize_music_with_vocals(
             count = create_symlinks_or_copy(wav_files, real_dir, use_symlinks)
             print(f"  Real (MUSDB18 mixture): {count} files")
     else:
-        print(f"  Real: MUSDB18 mixtures not found")
+        print("  Real: MUSDB18 mixtures not found")
 
     # Fake: FakeMusicCaps (same source, different audio type config)
     fakemusiccaps_dir = data_dir / "fakemusiccaps"
@@ -190,7 +188,7 @@ def organize_music_with_vocals(
         count = create_symlinks_or_copy(wav_files, fake_dir, use_symlinks)
         print(f"  Fake (FakeMusicCaps): {count} files")
     else:
-        print(f"  Fake: FakeMusicCaps not found")
+        print("  Fake: FakeMusicCaps not found")
 
     return exp_dir
 
@@ -215,11 +213,11 @@ def organize_isolated_vocals(
             count = create_symlinks_or_copy(wav_files, real_dir, use_symlinks)
             print(f"  Real (MUSDB18 vocals): {count} files")
     else:
-        print(f"  Real: MUSDB18 vocal stems not found")
+        print("  Real: MUSDB18 vocal stems not found")
 
     # Fake: Would need to isolate vocals from AI-generated music
     # This requires running voice isolation on FakeMusicCaps
-    print(f"  Fake: Requires voice isolation from AI music (run separately)")
+    print("  Fake: Requires voice isolation from AI music (run separately)")
 
     return exp_dir
 
@@ -288,7 +286,7 @@ def organize_deepspeak_v2(
             count = create_symlinks_or_copy(wav_files, real_dir, use_symlinks)
             print(f"  Real (DeepSpeak authentic): {count} files")
     else:
-        print(f"  Real: DeepSpeak real audio not found")
+        print("  Real: DeepSpeak real audio not found")
 
     # Fake: DeepSpeak voice-cloned audio
     deepspeak_fake = deepspeak_split_dir / "fake"
@@ -304,9 +302,9 @@ def organize_deepspeak_v2(
             count = create_symlinks_or_copy(wav_files, fake_dir, use_symlinks)
             print(f"  Fake (DeepSpeak voice-cloned): {count} files")
         else:
-            print(f"  Fake: No voice-cloned samples found (may need --include-all-fake)")
+            print("  Fake: No voice-cloned samples found (may need --include-all-fake)")
     else:
-        print(f"  Fake: DeepSpeak fake audio not found")
+        print("  Fake: DeepSpeak fake audio not found")
 
     return exp_dir
 

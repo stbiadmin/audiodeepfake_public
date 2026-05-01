@@ -10,14 +10,15 @@ Evaluates on In-the-Wild celebrity deepfakes.
 """
 
 import json
+from pathlib import Path
+from typing import Dict, Tuple
+
 import numpy as np
 import pandas as pd
-from pathlib import Path
-from sklearn.preprocessing import RobustScaler
+from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 from sklearn.model_selection import cross_val_score
-from sklearn.metrics import f1_score, roc_auc_score, accuracy_score
+from sklearn.preprocessing import RobustScaler
 from xgboost import XGBClassifier
-from typing import Dict, List, Tuple
 
 # Paths
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -279,7 +280,7 @@ def run_experiment(feature_method: str, n_features: int = None):
 
     # Also create sv_ds combined expert
     if "sv" in expert_models and "ds" in expert_models:
-        print(f"\nTraining sv_ds (combined)...")
+        print("\nTraining sv_ds (combined)...")
         # Load both datasets
         X_sv, y_sv = load_training_data(EXPERT_CONFIGS["sv"])
         X_ds, y_ds = load_training_data(EXPERT_CONFIGS["ds"])

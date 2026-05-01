@@ -4,25 +4,24 @@ Tests gated ensembles on evaluation datasets and generates comparison reports.
 """
 
 import json
-import numpy as np
-import pandas as pd
+import sys
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Any, Tuple
-import sys
+from typing import Any, Dict, List, Optional
+
+import numpy as np
+import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
+from evaluation.metrics import compute_binary_metrics, compute_confusion_matrix
 from training.data_loader import ALL_FEATURES
 from training.gated_ensemble import (
     GatedEnsembleClassifier,
-    GatedEnsembleConfig,
     create_gated_ensemble,
     list_gated_ensembles,
-    GATED_ENSEMBLE_CONFIGS,
 )
-from evaluation.metrics import compute_binary_metrics, compute_confusion_matrix
 
 
 @dataclass
@@ -144,7 +143,7 @@ class GatedEnsembleEvaluator:
         routing_stats = self._analyze_routing(ensemble, routing, y, y_pred, y_proba)
 
         if self.verbose:
-            print(f"  Routing distribution:")
+            print("  Routing distribution:")
             for expert_name, count in routing_stats['expert_counts'].items():
                 pct = count / len(y) * 100
                 print(f"    {expert_name}: {count} ({pct:.1f}%)")

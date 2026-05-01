@@ -26,17 +26,17 @@ Usage:
 """
 
 import argparse
-import librosa
-import soundfile as sf
-import numpy as np
-from pathlib import Path
-from concurrent.futures import ThreadPoolExecutor, as_completed
-from tqdm import tqdm
 import os
 import subprocess
 import tempfile
-from scipy.signal import fftconvolve
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
 
+import librosa
+import numpy as np
+import soundfile as sf
+from scipy.signal import fftconvolve
+from tqdm import tqdm
 
 # Conservative augmentation parameters (based on research best practices)
 PITCH_SHIFTS = [-2, -1, 1, 2]  # semitones (±2 is standard for speech)
@@ -326,7 +326,7 @@ def main():
                             tqdm.write(f"Error: {path}: {error}")
                 pbar.update(1)
 
-    print(f"\n=== Augmentation Complete ===")
+    print("\n=== Augmentation Complete ===")
     print(f"  Successful: {success_count}")
     print(f"  Errors: {error_count}")
     print(f"  Total files (original + augmented): {n_original + success_count}")

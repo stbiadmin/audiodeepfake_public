@@ -6,14 +6,15 @@ classification performance on In-the-Wild evaluation.
 """
 
 import json
+from pathlib import Path
+from typing import List, Tuple
+
+import librosa
 import numpy as np
 import pandas as pd
-from pathlib import Path
+from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
 from sklearn.preprocessing import RobustScaler
-from sklearn.metrics import f1_score, roc_auc_score, accuracy_score
 from xgboost import XGBClassifier
-from typing import Tuple, List
-import librosa
 
 # Paths
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -75,7 +76,7 @@ def analyze_silence_in_dataset(audio_dir: Path, max_files: int = 100) -> dict:
             silent_count = sum(1 for e in energies if e < silence_threshold)
             silent_segment_counts.append(silent_count)
             total_segment_counts.append(len(energies))
-        except Exception as e:
+        except Exception:
             continue
 
     if not all_energies:
@@ -163,7 +164,6 @@ def evaluate_with_segment_filter(X_train, y_train, X_eval, y_eval,
                                   features: List[str], n_features: int = 8) -> dict:
     """Train and evaluate with top-N features by AUC."""
     # Select top N features by AUC
-    from sklearn.metrics import roc_auc_score
     rankings = {}
     for col in features:
         if col in X_train.columns:
@@ -299,7 +299,7 @@ def main():
         if best['f1'] > baseline_f1:
             print(f"  Improvement: +{(best['f1'] - baseline_f1)*100:.2f} percentage points")
         else:
-            print(f"  No improvement from segment filtering")
+            print("  No improvement from segment filtering")
 
     # Conclusion for reviewer
     print("\n" + "=" * 70)
@@ -313,7 +313,7 @@ def main():
             print("Finding: Silence is rare (<5% of segments) in both classes.")
             print("Explicit silence filtering would have minimal impact.")
         else:
-            print(f"Finding: Non-trivial silence prevalence detected.")
+            print("Finding: Non-trivial silence prevalence detected.")
             print("Silence filtering may warrant further investigation.")
 
     if len(results) > 1:

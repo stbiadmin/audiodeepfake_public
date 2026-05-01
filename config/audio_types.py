@@ -1,7 +1,6 @@
 """Audio type configurations for different content types."""
 
-from typing import Dict, Any, List
-
+from typing import Any, Dict, List
 
 AUDIO_TYPE_CONFIGS: Dict[str, Dict[str, Any]] = {
     'single_voice': {

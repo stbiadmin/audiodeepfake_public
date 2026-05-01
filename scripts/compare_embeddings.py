@@ -6,12 +6,12 @@ Generates:
 - laion_vs_msclap_feature_comparison.png
 """
 
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-from pathlib import Path
 import argparse
+from pathlib import Path
 
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
 
 # Audio types to compare
 AUDIO_TYPES = ['single_voice', 'music_instrumental', 'music_with_vocals', 'deepspeak_v2_train']
@@ -205,7 +205,7 @@ def main():
     output_dir = Path(args.output_dir)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    print(f"\nComparing LAION-CLAP vs MS-CLAP")
+    print("\nComparing LAION-CLAP vs MS-CLAP")
     print(f"  Analysis dir: {analysis_dir}")
     print(f"  Output dir: {output_dir}")
     print(f"  Audio types: {AUDIO_TYPES}")

@@ -9,12 +9,13 @@ Evaluates on In-the-Wild celebrity deepfakes.
 """
 
 import json
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
-from pathlib import Path
+from sklearn.metrics import accuracy_score, f1_score, roc_auc_score
+from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import RobustScaler
-from sklearn.model_selection import StratifiedKFold, cross_val_score
-from sklearn.metrics import f1_score, roc_auc_score, accuracy_score
 from xgboost import XGBClassifier
 
 # Paths

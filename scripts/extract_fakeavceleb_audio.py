@@ -6,11 +6,10 @@ Real audio: RealVideo-RealAudio
 Fake audio: RealVideo-FakeAudio, FakeVideo-FakeAudio
 """
 
-import os
 import subprocess
-import sys
-from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
+
 from tqdm import tqdm
 
 # Project paths
@@ -116,14 +115,14 @@ def main():
                     failed += 1
                 pbar.update(1)
 
-    print(f"\nExtraction complete!")
+    print("\nExtraction complete!")
     print(f"Success: {success + existing}")
     print(f"Failed: {failed}")
 
     # Verify counts
     real_count = len(list((OUTPUT_DIR / "real").rglob("*.wav"))) if (OUTPUT_DIR / "real").exists() else 0
     fake_count = len(list((OUTPUT_DIR / "fake").rglob("*.wav"))) if (OUTPUT_DIR / "fake").exists() else 0
-    print(f"\nFinal counts:")
+    print("\nFinal counts:")
     print(f"  Real: {real_count}")
     print(f"  Fake: {fake_count}")
 

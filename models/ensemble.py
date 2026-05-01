@@ -9,13 +9,14 @@ Based on research showing ensemble methods improve OOD performance:
 """
 
 import pickle
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any, Dict, List, Optional
+
 import numpy as np
 import pandas as pd
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Any
-from dataclasses import dataclass
 
-import sys
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from training.data_loader import ALL_FEATURES
@@ -169,8 +170,12 @@ class EnsembleClassifier:
             Dictionary of metrics
         """
         from sklearn.metrics import (
-            accuracy_score, precision_score, recall_score, f1_score,
-            roc_auc_score, confusion_matrix,
+            accuracy_score,
+            confusion_matrix,
+            f1_score,
+            precision_score,
+            recall_score,
+            roc_auc_score,
         )
 
         y_proba = self.predict_proba(X)

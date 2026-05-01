@@ -1,0 +1,15 @@
+# Minimal dependencies needed to run lint and the lightweight smoke tests
+# (no audio embedding models, no torch, no CUDA libraries).
+#
+# Use requirements.txt for the full runtime needed to reproduce paper results.
+
+numpy==1.26.4
+scipy==1.13.1
+pandas==2.3.3
+scikit-learn==1.6.1
+xgboost==2.1.4
+PyYAML==6.0.3
+tqdm==4.67.1
+
+pytest>=8.0
+ruff>=0.6

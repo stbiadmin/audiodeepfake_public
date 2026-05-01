@@ -5,14 +5,15 @@ real-world generalizability and robustness.
 """
 
 import json
-import numpy as np
-import pandas as pd
+import pickle
+import sys
 from dataclasses import dataclass, field
 from datetime import datetime
 from pathlib import Path
-from typing import Dict, List, Optional, Any, Tuple
-import pickle
-import sys
+from typing import Any, Dict, List, Optional
+
+import numpy as np
+import pandas as pd
 
 # Add training module to path for ALL_FEATURES
 sys.path.insert(0, str(Path(__file__).parent.parent))
@@ -116,7 +117,7 @@ class GeneralizationTester:
         if self.verbose:
             print(f"  Model loaded with {len(self.features)} features: {self.features}")
             if self.scaler is not None:
-                print(f"  Scaler loaded: RobustScaler (v2+ model)")
+                print("  Scaler loaded: RobustScaler (v2+ model)")
 
     def evaluate_dataset(
         self,
@@ -162,7 +163,7 @@ class GeneralizationTester:
             # Select only the model's features
             X = X_all_df[self.features].copy()
             if self.verbose:
-                print(f"  Applied RobustScaler normalization")
+                print("  Applied RobustScaler normalization")
         else:
             # No scaler - just use model's features directly
             X = df[self.features].copy()
@@ -517,8 +518,8 @@ def generate_evaluation_report(
             f"### {r.model_name} on {r.dataset_name}",
             "",
             "```",
-            f"               Predicted",
-            f"             Real    Fake",
+            "               Predicted",
+            "             Real    Fake",
             f"Actual Real  {cm['tn']:5d}   {cm['fp']:5d}",
             f"       Fake  {cm['fn']:5d}   {cm['tp']:5d}",
             "```",

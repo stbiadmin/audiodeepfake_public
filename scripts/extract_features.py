@@ -7,22 +7,23 @@ This script processes audio files through the complete pipeline:
 4. Statistical feature extraction from similarity distribution
 """
 
-import sys
-import json
 import argparse
+import json
+import sys
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
-from dataclasses import dataclass, asdict
+
 import numpy as np
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from config.base import AudioConfig, EmbeddingConfig, FeatureConfig, PipelineConfig
-from config.audio_types import get_audio_type_config, requires_diarization
+from config.audio_types import get_audio_type_config
+from config.base import PipelineConfig
+from core.feature_extractor import DistributionFeatureExtractor
 from core.segmenter import AudioSegmenter
 from core.similarity_computer import SimilarityComputer
-from core.feature_extractor import DistributionFeatureExtractor
 
 
 @dataclass

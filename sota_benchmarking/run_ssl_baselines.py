@@ -15,17 +15,21 @@ Usage:
 
 import json
 import sys
+from pathlib import Path
+
+import librosa
 import numpy as np
 import pandas as pd
 import torch
-import librosa
-from pathlib import Path
-from datetime import datetime
 from scipy.interpolate import interp1d
 from scipy.optimize import brentq
 from sklearn.metrics import (
-    accuracy_score, precision_score, recall_score, f1_score,
-    roc_auc_score, roc_curve,
+    accuracy_score,
+    f1_score,
+    precision_score,
+    recall_score,
+    roc_auc_score,
+    roc_curve,
 )
 
 PROJECT_ROOT = Path(__file__).parent.parent
@@ -97,7 +101,7 @@ class Wav2Vec2XLSRDetector:
     MODEL_ID = "Gustking/wav2vec2-large-xlsr-deepfake-audio-classification"
 
     def __init__(self, device='cpu'):
-        from transformers import AutoModelForAudioClassification, AutoFeatureExtractor
+        from transformers import AutoFeatureExtractor, AutoModelForAudioClassification
         print(f"  Loading {self.MODEL_ID}...")
         self.feature_extractor = AutoFeatureExtractor.from_pretrained(self.MODEL_ID)
         self.model = AutoModelForAudioClassification.from_pretrained(self.MODEL_ID)
@@ -172,7 +176,7 @@ class SSLAntiSpoofDetector:
         self.model.load_state_dict(state_dict)
         self.model.eval()
         self.model.to(device)
-        print(f"  Loaded SSL_Anti-spoofing model.")
+        print("  Loaded SSL_Anti-spoofing model.")
 
     def predict(self, audio_np, sr=TARGET_SR):
         """Return spoof probability for audio."""
@@ -262,7 +266,7 @@ def main():
             print(f"\n  Dataset: {dataset_name}")
             entries = load_eval_data(dataset_name)
             if not entries:
-                print(f"    No data found, skipping.")
+                print("    No data found, skipping.")
                 continue
 
             n_real = sum(1 for e in entries if e['label'] == 0)

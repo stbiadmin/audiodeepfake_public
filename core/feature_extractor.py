@@ -4,10 +4,11 @@ Expanded feature set for exploratory analysis - cast a wide net to find
 which statistical properties distinguish real from AI-generated audio.
 """
 
+from dataclasses import dataclass
+from typing import Callable, Dict, List, Optional
+
 import numpy as np
 from scipy import stats
-from typing import Dict, List, Optional, Callable
-from dataclasses import dataclass
 
 from config.base import FeatureConfig
 

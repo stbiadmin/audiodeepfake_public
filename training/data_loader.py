@@ -4,17 +4,17 @@ Loads combined JSON feature files and prepares feature matrices for training.
 """
 
 import json
-import numpy as np
-import pandas as pd
+import sys
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple, Union
+
+import numpy as np
+import pandas as pd
 from imblearn.under_sampling import RandomUnderSampler
 from sklearn.preprocessing import RobustScaler
 
-import sys
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from config.audio_types import COMBINED_CONFIGS, get_combined_audio_types
-
 
 # Audio types available for training
 AUDIO_TYPES = [

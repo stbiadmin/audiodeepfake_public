@@ -3,14 +3,14 @@
 Handles training, evaluation, and model persistence.
 """
 
-import json
 import pickle
+from dataclasses import asdict, dataclass
+from pathlib import Path
+from typing import Any, Dict, List, Optional
+
 import numpy as np
 import pandas as pd
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Any
-from dataclasses import dataclass, asdict
-from sklearn.model_selection import train_test_split, StratifiedKFold, cross_validate
+from sklearn.model_selection import StratifiedKFold, cross_validate, train_test_split
 from xgboost import XGBClassifier
 
 from .feature_selector import GreedyFeatureSelector
@@ -261,7 +261,7 @@ class Trainer:
         }
 
         if verbose:
-            print(f"CV Results (mean ± std):")
+            print("CV Results (mean ± std):")
             for metric, scores in cv_scores.items():
                 print(f"  {metric}: {np.mean(scores):.4f} ± {np.std(scores):.4f}")
 
@@ -280,8 +280,14 @@ class Trainer:
         y_proba = self.model_.predict_proba(X_test_sel)[:, 1]
 
         from sklearn.metrics import (
-            accuracy_score, precision_score, recall_score, f1_score,
-            roc_auc_score, confusion_matrix as compute_cm,
+            accuracy_score,
+            f1_score,
+            precision_score,
+            recall_score,
+            roc_auc_score,
+        )
+        from sklearn.metrics import (
+            confusion_matrix as compute_cm,
         )
 
         test_scores = {
@@ -308,10 +314,10 @@ class Trainer:
         cm = compute_cm(y_test, y_pred).tolist()
 
         if verbose:
-            print(f"Test Results:")
+            print("Test Results:")
             for metric, score in test_scores.items():
                 print(f"  {metric}: {score:.4f}")
-            print(f"\nConfusion Matrix:")
+            print("\nConfusion Matrix:")
             print(f"  [[TN={cm[0][0]}, FP={cm[0][1]}],")
             print(f"   [FN={cm[1][0]}, TP={cm[1][1]}]]")
 

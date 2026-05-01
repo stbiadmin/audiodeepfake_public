@@ -9,7 +9,6 @@ Creates organized directory structure for extraction:
 
 import csv
 import os
-import sys
 from pathlib import Path
 
 

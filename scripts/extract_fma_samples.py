@@ -2,7 +2,6 @@
 """Extract sampled FMA tracks from the FMA medium zip file."""
 
 import zipfile
-import os
 from pathlib import Path
 
 FMA_ZIP = Path("data/fma/fma_medium.zip")
@@ -54,7 +53,7 @@ def main():
             else:
                 missing.append(track_id)
 
-    print(f"\n=== Extraction Complete ===")
+    print("\n=== Extraction Complete ===")
     print(f"Extracted: {extracted} tracks")
     print(f"Missing: {len(missing)} tracks")
 

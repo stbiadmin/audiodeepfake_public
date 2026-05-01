@@ -1,9 +1,9 @@
 """Model module for audio deepfake detection."""
 
 from .ensemble import (
-    EnsembleConfig,
-    EnsembleClassifier,
     ENSEMBLE_CONFIGS,
+    EnsembleClassifier,
+    EnsembleConfig,
     create_ensemble,
     list_ensembles,
 )

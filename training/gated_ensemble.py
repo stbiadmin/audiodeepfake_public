@@ -12,17 +12,16 @@ References:
 """
 
 import pickle
+import sys
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Tuple, Union
+
 import numpy as np
 import pandas as pd
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple, Any, Union
-from dataclasses import dataclass, field
-from sklearn.linear_model import LogisticRegression
 from sklearn.neural_network import MLPClassifier
 from sklearn.preprocessing import StandardScaler
-import json
 
-import sys
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from training.data_loader import ALL_FEATURES
@@ -613,8 +612,12 @@ class GatedEnsembleClassifier:
             Dictionary of metrics
         """
         from sklearn.metrics import (
-            accuracy_score, precision_score, recall_score, f1_score,
-            roc_auc_score, confusion_matrix,
+            accuracy_score,
+            confusion_matrix,
+            f1_score,
+            precision_score,
+            recall_score,
+            roc_auc_score,
         )
 
         y_proba, routing = self.predict_proba(X, return_routing=True)

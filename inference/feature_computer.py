@@ -4,11 +4,11 @@ Computes cosine similarities between embeddings and extracts
 statistical features from the similarity distribution.
 """
 
-import numpy as np
-from scipy.spatial.distance import pdist
-from scipy import stats
 from typing import Dict, List, Optional, Set
 
+import numpy as np
+from scipy import stats
+from scipy.spatial.distance import pdist
 
 # All available features
 ALL_FEATURES = [

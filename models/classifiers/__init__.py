@@ -1,8 +1,8 @@
 """Classifier models for audio deepfake detection."""
 
 from .xgboost_classifier import (
-    XGBoostHyperparameters,
     AudioDeepfakeClassifier,
+    XGBoostHyperparameters,
 )
 
 __all__ = [

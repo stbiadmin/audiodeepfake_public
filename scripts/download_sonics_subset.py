@@ -16,8 +16,8 @@ import os
 import subprocess
 import sys
 import zipfile
-from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from pathlib import Path
 
 import pandas as pd
 from tqdm import tqdm
@@ -262,7 +262,7 @@ def main():
     n_fake_files = len(list(fake_dir.glob('*.mp3'))) if fake_dir.exists() else 0
     n_real_files = len(list(real_dir.glob('*.mp3'))) if real_dir.exists() else 0
 
-    print(f"\n=== Download Summary ===")
+    print("\n=== Download Summary ===")
     print(f"Fake songs: {n_fake_files} files in {fake_dir}")
     print(f"Real songs: {n_real_files} files in {real_dir}")
     print(f"Total: {n_fake_files + n_real_files} files")

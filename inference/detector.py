@@ -4,22 +4,26 @@ Orchestrates the full detection pipeline:
 load -> segment -> embed -> similarity -> features -> classify
 """
 
-import numpy as np
 from pathlib import Path
-from typing import Dict, List, Optional, Union, Any
+from typing import Any, Dict, List, Optional, Union
+
+import numpy as np
 
 from .audio_processor import (
-    load_audio, segment_audio, validate_audio, get_audio_duration,
-    AudioTooShortError, UnsupportedFormatError, AudioLoadError,
-    SEGMENT_CONFIGS, AudioInfo
+    AudioTooShortError,
+    get_audio_duration,
+    load_audio,
+    segment_audio,
+    validate_audio,
+)
+from .classifiers import (
+    BaseClassifier,
+    SpeechClassifier,
+    SpeechEnsembleClassifier,
+    get_classifier,
 )
 from .embedding_engine import EmbeddingEngine
-from .feature_computer import compute_similarities, compute_features, get_similarity_stats
-from .classifiers import (
-    get_classifier, BaseClassifier, SpeechClassifier,
-    SpeechEnsembleClassifier, MusicAdaptiveClassifier
-)
-from .model_registry import get_registry
+from .feature_computer import compute_features, compute_similarities, get_similarity_stats
 
 
 class AudioDeepfakeDetector:

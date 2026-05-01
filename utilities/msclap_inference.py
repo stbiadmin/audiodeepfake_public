@@ -3,11 +3,12 @@ Audio Embedding Utilities
 A module for extracting embeddings from audio files and text using Microsoft CLAP.
 """
 
-import numpy as np
+from typing import Any, Dict, List, Optional, Union
+
 import librosa
+import numpy as np
 import torch
 from msclap import CLAP
-from typing import List, Union, Tuple, Dict, Any, Optional
 
 
 class AudioEmbeddingExtractor:

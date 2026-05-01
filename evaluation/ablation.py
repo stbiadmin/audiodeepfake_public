@@ -6,15 +6,15 @@ Experiments to understand feature contributions:
 - Feature set comparison: Compare predefined feature sets
 """
 
+from pathlib import Path
+from typing import Dict, List, Optional
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-from typing import Dict, List, Optional, Tuple, Any
-from pathlib import Path
-import matplotlib.pyplot as plt
 from sklearn.model_selection import StratifiedKFold, cross_val_score
-from xgboost import XGBClassifier
 from tqdm import tqdm
-
+from xgboost import XGBClassifier
 
 # Predefined feature sets for comparison
 FEATURE_SETS = {
