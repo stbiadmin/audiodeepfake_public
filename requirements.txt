@@ -1,5 +1,10 @@
-# Pinned versions used in the published experiments.
+# Pinned runtime dependencies for the published experiments.
 # Tested with Python 3.10 on Apple Silicon (MPS) and x86_64 Linux (CPU/CUDA).
+#
+# Single source of truth. CI installs from this file directly.
+#
+# For CPU-only environments (CI, laptops without a discrete GPU) prepend:
+#   --extra-index-url https://download.pytorch.org/whl/cpu
 
 # Audio I/O and feature extraction
 librosa==0.10.2.post1
@@ -36,3 +41,7 @@ seaborn==0.13.2
 PyYAML==6.0.3
 tqdm==4.67.1
 requests==2.32.5
+
+# Dataset acquisition (used only by scripts/download_*.py)
+datasets==3.0.1
+musdb==0.4.3

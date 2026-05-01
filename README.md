@@ -33,6 +33,13 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
+For machines without a discrete GPU (laptops, CI), install the CPU-only
+torch wheel instead to skip the ~700 MB CUDA download:
+
+```bash
+pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
+```
+
 Tested with Python 3.10 on macOS (Apple Silicon, MPS) and x86_64 Linux
 (CPU and CUDA). No GPU is required for inference; speech ensemble inference
 runs at roughly one file per second on CPU and is dominated by the MS-CLAP
